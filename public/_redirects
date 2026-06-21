@@ -1,0 +1,7 @@
+# Cloudflare Pages redirects
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+
+# SPA fallback — serve index.html for any unmatched route (404 → index)
+# Not strictly needed for a static Next.js site (it generates all pages),
+# but good practice as a safety net.
+/* /index.html 200

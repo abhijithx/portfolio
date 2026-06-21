@@ -87,12 +87,12 @@ export interface Activity {
 
 export const activities: Activity[] = [
   {
-    role: "Team ",
+    role: "Team",
     organization: "Google Developer's Student Club",
     period: "2026–2027",
   },
   {
-    role: "Technical Team ",
+    role: "Technical Team",
     organization: "ASCA",
     period: "2025–2027",
   },

@@ -11,6 +11,14 @@ const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
   cat: Cat,
 };
 
+const colorTextMap: Record<string, string> = {
+  "bg-orange-500": "text-orange-200",
+  "bg-amber-600": "text-amber-200",
+  "bg-gray-800": "text-slate-300",
+  "bg-gradient-to-br from-red-500 to-pink-600": "text-rose-200",
+  "bg-gradient-to-br from-pink-500 to-purple-600": "text-purple-200",
+};
+
 const itemVariants = {
   hidden: { opacity: 0, scale: 0.9 },
   visible: (i: number) => ({
@@ -29,25 +37,22 @@ export default function FunCards() {
     <>
       {funCards.map((card, i) => {
         const Icon = iconMap[card.icon] || Trophy;
+        const bgColor = card.color === "bg-orange-500" ? "bg-amber-600" : card.color;
+        const textColor = colorTextMap[bgColor] ?? "text-white/70";
         return (
           <motion.div
             key={card.title}
-            className={`${card.color} rounded-3xl p-5 md:p-6 flex flex-col items-center justify-center text-center card-glow md:col-span-3 lg:col-span-3`}
+            className={`rounded-lg shadow-sm ${bgColor} border-0 text-white`}
             variants={itemVariants}
             custom={i}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            whileHover={{ scale: 1.05, y: -5 }}
+            whileHover={{ scale: 1.08, y: -4 }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            tabIndex={0}
-            aria-label={`${card.title}: ${card.subtitle}`}
           >
-            <Icon className="w-8 h-8 md:w-10 md:h-10 text-white mb-2" strokeWidth={1.5} />
-            <h3 className="text-xs md:text-sm font-bold text-white tracking-widest uppercase mb-0.5">
-              {card.title}
-            </h3>
-            <p className="text-white/70 text-xs">{card.subtitle}</p>
+            <div className="p-4 h-full flex flex-col items-center justify-center text-center">
+              <Icon className="h-8 w-8 mb-2" strokeWidth={1.5} />
+              <p className="text-xs font-semibold">{card.title}</p>
+              <p className={`text-xs ${textColor} mt-1`}>{card.subtitle}</p>
+            </div>
           </motion.div>
         );
       })}

@@ -1,42 +1,40 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { UserCircle, MapPin, Mail } from "lucide-react";
+import { MapPin, Mail, User } from "lucide-react";
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const } },
+};
 
 export default function ProfileCard() {
   return (
     <motion.div
-      className="bg-blue-600 rounded-3xl p-6 md:p-8 flex flex-col justify-between card-glow relative overflow-hidden md:col-span-6 lg:col-span-4 lg:row-span-2"
-      whileHover={{ scale: 1.02, y: -5 }}
+      className="rounded-lg shadow-sm col-span-2 row-span-2 bg-blue-600 border-0 text-white overflow-hidden relative group"
+      variants={itemVariants}
+      whileHover={{ scale: 1.03, y: -4 }}
       transition={{ type: "spring", stiffness: 200, damping: 15 }}
-      tabIndex={0}
-      role="region"
-      aria-label="Profile information"
     >
-      {/* Decorative glow */}
-      <div className="absolute top-0 right-0 w-40 h-40 bg-blue-400/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-
-      <div className="relative z-10">
-        <UserCircle className="w-12 h-12 text-white/90 mb-4" strokeWidth={1.5} />
-        <h2 className="text-2xl md:text-3xl font-bold text-white tracking-wide mb-4">
-          PROFILE
-        </h2>
-        <p className="text-white/80 text-sm md:text-base leading-relaxed">
-          MCA Student
-        </p>
-        <p className="text-white/80 text-sm md:text-base leading-relaxed">
-          College of Engineering Trivandrum, Kerala
-        </p>
-      </div>
-
-      <div className="relative z-10 mt-6 space-y-2">
-        <div className="flex items-center gap-2 text-white/70 text-sm">
-          <MapPin className="w-4 h-4" />
-          <span>Kerala, India</span>
+      <div className="p-6 h-full flex flex-col justify-between">
+        <div>
+          <User className="h-12 w-12 mb-4 opacity-80" strokeWidth={1.5} />
+          <h2 className="text-2xl font-bold mb-2">PROFILE</h2>
+          <p className="text-blue-100 text-sm leading-relaxed">
+            MCA Student at College of Engineering Trivandrum. Passionate about
+            Java, Systems Design, and Cloud Infrastructure.
+          </p>
         </div>
-        <div className="flex items-center gap-2 text-white/70 text-sm">
-          <Mail className="w-4 h-4" />
-          <span>abhijithsudhakaran.in@gmail.com</span>
+
+        <div className="text-xs text-blue-200 space-y-1">
+          <div className="flex items-center gap-2">
+            <MapPin className="h-3 w-3 shrink-0" />
+            Kerala, India
+          </div>
+          <div className="flex items-center gap-2">
+            <Mail className="h-3 w-3 shrink-0" />
+            abhijithsudhakaran.in@gmail.com
+          </div>
         </div>
       </div>
     </motion.div>

@@ -1,0 +1,25 @@
+# Cloudflare Pages custom headers
+# Applied at the edge — no server required.
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+
+# ── Security headers for all routes ──────────────────────────────────────────
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-XSS-Protection: 1; mode=block
+
+# ── Static assets — immutable cache (fingerprinted by Next.js) ───────────────
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# ── Resume PDF ────────────────────────────────────────────────────────────────
+/Abhijith_Resume_compressed.pdf
+  Cache-Control: public, max-age=86400
+  Content-Disposition: inline
+
+# ── HTML pages — short cache, always revalidate ──────────────────────────────
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
