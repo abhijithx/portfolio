@@ -12,7 +12,7 @@ const itemVariants = {
 export default function EducationCard() {
   return (
     <motion.div
-      className="rounded-lg shadow-sm col-span-2 md:col-span-3 row-span-2 bg-violet-600 border-0 text-white overflow-hidden"
+      className="rounded-lg shadow-sm col-span-2 md:col-span-3 row-span-2 bg-red-500 border-0 text-white overflow-hidden"
       variants={itemVariants}
       whileHover={{ scale: 1.03, y: -4 }}
       transition={{ type: "spring", stiffness: 200, damping: 15 }}
@@ -27,7 +27,7 @@ export default function EducationCard() {
           {education.map((edu, i) => (
             <motion.div
               key={i}
-              className="bg-violet-700/30 p-3 rounded"
+              className="bg-red-700/30 p-3 rounded"
               initial={{ opacity: 0, x: -15 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
